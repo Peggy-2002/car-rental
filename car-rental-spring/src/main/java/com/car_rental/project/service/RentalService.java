@@ -21,4 +21,7 @@ public interface RentalService {
     void saveForm(BookingForm bookingForm);
 
     void updateCar(Cars car);
+
+    List<BookingForm> getAllBooking();
+
 }

@@ -13,9 +13,7 @@ public class BookingForm {
     @Column(name = "id")
     private int id;
 
-
-
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name="account_id")
     private SignUp signUp ;
 
@@ -33,6 +31,15 @@ public class BookingForm {
 
     @Column(name="pick_up_date")
     private String pickUpDate;
+
+    @Column(name="cancel_status")
+    private String status;
+
+    @Column(name="return_status")
+    private String returnStatus;
+
+    @Column(name="cancellation_fee")
+    private String fee;
 
 
     @Column(name="drop_of_date")
@@ -52,7 +59,7 @@ public class BookingForm {
         return signUp;
     }
 
-    public void setUser(SignUp signUp) {
+    public void setSignup(SignUp signUp) {
         this.signUp = signUp;
     }
 
@@ -124,6 +131,30 @@ public class BookingForm {
         this.payment = payment;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getReturnStatus() {
+        return returnStatus;
+    }
+
+    public void setReturnStatus(String returnStatus) {
+        this.returnStatus = returnStatus;
+    }
+
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
     @Override
     public String toString() {
         return "BookingForm{" +
@@ -135,6 +166,9 @@ public class BookingForm {
                 ", license=" + license +
                 ", carName='" + carName + '\'' +
                 ", pickUpDate='" + pickUpDate + '\'' +
+                ", status='" + status + '\'' +
+                ", returnStatus='" + returnStatus + '\'' +
+                ", fee='" + fee + '\'' +
                 ", dropOfDate='" + dropOfDate + '\'' +
                 ", payment='" + payment + '\'' +
                 '}';

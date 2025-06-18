@@ -18,4 +18,5 @@ public interface RentalRepository {
 
     void  saveForm(BookingForm bookingForm );
     void  updateCar(Cars car);
+    List<BookingForm> findAll();
 }
