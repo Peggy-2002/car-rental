@@ -24,4 +24,8 @@ public interface RentalService {
 
     List<BookingForm> getAllBooking();
 
+    BookingForm getBooking(int license);
+
+    void update(BookingForm bookingForm);
+
 }

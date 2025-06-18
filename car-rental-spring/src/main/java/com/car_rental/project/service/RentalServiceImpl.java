@@ -123,5 +123,16 @@ public class RentalServiceImpl  implements RentalService{
         return rentalRepository.findAll();
     }
 
+    @Override
+    public BookingForm getBooking(int license) {
+        return rentalRepository.findByDriversLicense(license) ;
+    }
+
+    @Override
+    @Transactional
+    public void update(BookingForm bookingForm) {
+        rentalRepository.update(bookingForm);
+    }
+
 
 }
