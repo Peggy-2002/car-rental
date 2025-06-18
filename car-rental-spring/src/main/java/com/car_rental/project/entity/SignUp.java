@@ -103,10 +103,10 @@ public class SignUp {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "SignUp{" +
                 "id=" + id +
                 ", bookingForm=" + bookingForm +
-                ", firstName='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
