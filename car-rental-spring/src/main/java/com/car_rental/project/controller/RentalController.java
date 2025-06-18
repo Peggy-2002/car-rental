@@ -135,5 +135,19 @@ final private  RentalService rentalService;
         return booking;
     }
 
+    @GetMapping("bookings/{license}")
+    public  BookingForm getBooking(final  @PathVariable int license){
+        return rentalService.getBooking(license);
+    }
+    @PostMapping("/update-bookings")
+    public  Response  deleteBookings(@RequestBody BookingForm bookingForm){
+        rentalService.update(bookingForm);
+        System.out.println(bookingForm);
+        Response response = new Response();
+        response.setMessage("Cancelled");
+        return  response;
+
+    }
+
 
 }

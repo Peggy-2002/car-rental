@@ -134,6 +134,24 @@ public class RentalRepositoryImpl implements  RentalRepository {
     return typedQuery.getResultList();
 
     }
+
+    @Override
+    public BookingForm findByDriversLicense(int license) {
+        TypedQuery<BookingForm> query =entityManager.createQuery("FROM BookingForm WHERE license =:license", BookingForm.class);
+        query.setParameter("license",license);
+        BookingForm booking = query.getSingleResult();
+        return booking ;
+    }
+
+    @Override
+    public void update(BookingForm bookingForm) {
+        BookingForm bookingForm1 =findByDriversLicense(bookingForm.getLicense());
+
+        bookingForm1.setStatus("Cancelled");
+        bookingForm1.setFee("Paid");
+        entityManager.merge(bookingForm1);
+
+    }
 }
 
 
