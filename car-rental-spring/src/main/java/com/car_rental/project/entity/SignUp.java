@@ -15,9 +15,6 @@ public class SignUp {
 
 
 
-    @OneToOne(mappedBy="signUp", cascade ={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private BookingForm bookingForm;
-
     @Column(name="name")
     private String name;
 
@@ -92,20 +89,10 @@ public class SignUp {
                 password.trim() : null;
     }
 
-    public BookingForm getBookingForm() {
-        return bookingForm;
-    }
-
-    public void setBookingForm(BookingForm bookingForm) {
-        this.bookingForm = bookingForm;
-        bookingForm.setSignUp(this);
-    }
-
     @Override
     public String toString() {
         return "SignUp{" +
                 "id=" + id +
-                ", bookingForm=" + bookingForm +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
@@ -113,5 +100,21 @@ public class SignUp {
                 ", role='" + role + '\'' +
                 '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "SignUp{" +
+//                "id=" + id +
+//<<<<<<< HEAD
+//                ", bookingForm=" + bookingForm +
+//=======
+//>>>>>>> 6cdf14d2a04d6fd7e6f4232369c6bf4267834ae9
+//                ", name='" + name + '\'' +
+//                ", surname='" + surname + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", role='" + role + '\'' +
+//                '}';
+//    }
 }
 

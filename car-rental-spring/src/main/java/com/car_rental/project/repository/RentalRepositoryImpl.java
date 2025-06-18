@@ -29,7 +29,7 @@ public class RentalRepositoryImpl implements  RentalRepository {
             signUp1.setSurname(signUp.getSurname());
             signUp1.setEmail(signUp.getEmail());
             signUp1.setPassword(signUp.getPassword());
-            signUp1.setRole("Client");
+            signUp1.setRole("Manager");
             this.entityManager.persist(signUp1);
 
 
@@ -94,38 +94,13 @@ public class RentalRepositoryImpl implements  RentalRepository {
 
 
     public  void saveBookingForm(BookingForm bookingForm ){
-
-
-
-        BookingForm bookingForm1 = new BookingForm();
-        bookingForm1.setCarName(bookingForm.getCarName());
-        bookingForm1.setDropOfDate(bookingForm.getDropOfDate());
-        bookingForm1.setEmail(bookingForm.getEmail());
-        bookingForm1.setLicense(bookingForm.getLicense());
-        bookingForm1.setName(bookingForm.getName());
-        bookingForm1.setSurname(bookingForm.getSurname());
-        bookingForm1.setPickUpDate(bookingForm.getPickUpDate());
-        bookingForm1.setPayment("Paid");
-
-        this.entityManager.persist(bookingForm1);
+        bookingForm.setPayment("Paid");
+        this.entityManager.persist(bookingForm);
     }
 
     public  void saveForm(BookingForm bookingForm ){
-        BookingForm bookingForm1 = new BookingForm();
-        bookingForm1.setCarName(bookingForm.getCarName());
-        bookingForm1.setDropOfDate(bookingForm.getDropOfDate());
-        bookingForm1.setEmail(bookingForm.getEmail());
-        bookingForm1.setLicense(bookingForm.getLicense());
-        bookingForm1.setName(bookingForm.getName());
-        bookingForm1.setSurname(bookingForm.getSurname());
-        bookingForm1.setPickUpDate(bookingForm.getPickUpDate());
-        bookingForm1.setPayment("Paid");
-
-        SignUp user1 = new SignUp();
-        user1.setId(bookingForm.getSignUp().getId());
-        SignUp user = entityManager.find(SignUp.class,bookingForm.getSignUp().getId());
-        user.setBookingForm(bookingForm1);
-
+        bookingForm.setPayment("Paid");
+        entityManager.merge(bookingForm);
     }
 
     @Override
@@ -146,6 +121,17 @@ public class RentalRepositoryImpl implements  RentalRepository {
 //         cars.setStatus(car.getStatus());
 //         cars.setId(car.getId());
 //        this.entityManager.persist(cars);
+
+    }
+
+    @Override
+    public List<BookingForm> findAll() {
+//        return entityManager.createQuery("SELECT b FROM BookingForm b ", BookingForm.class).getResultList();
+
+    TypedQuery<BookingForm> typedQuery = entityManager.createQuery("FROM BookingForm", BookingForm.class);
+        System.out.println(typedQuery.getResultList());
+
+    return typedQuery.getResultList();
 
     }
 }

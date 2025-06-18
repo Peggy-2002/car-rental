@@ -128,5 +128,12 @@ final private  RentalService rentalService;
 
     }
 
+    @GetMapping("/viewbookings")
+    public List<BookingForm> getAllBookings(){
+        List<BookingForm> booking = rentalService.getAllBooking();
+        System.out.println(booking);
+        return booking;
+    }
+
 
 }

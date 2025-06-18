@@ -118,5 +118,10 @@ public class RentalServiceImpl  implements RentalService{
 
     }
 
+    @Override
+    public List<BookingForm> getAllBooking() {
+        return rentalRepository.findAll();
+    }
+
 
 }
