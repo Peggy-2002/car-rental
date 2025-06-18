@@ -25,4 +25,6 @@ public interface RentalRepository {
     BookingForm findByDriversLicense(int license);
 
     void update(BookingForm bookingForm);
+
+    void editBooking(BookingForm bookingForm);
 }

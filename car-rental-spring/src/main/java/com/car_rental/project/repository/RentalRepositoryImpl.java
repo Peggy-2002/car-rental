@@ -152,6 +152,13 @@ public class RentalRepositoryImpl implements  RentalRepository {
         entityManager.merge(bookingForm1);
 
     }
+
+    @Override
+    public void editBooking(BookingForm bookingForm) {
+        BookingForm booking = findByDriversLicense(bookingForm.getLicense());
+        entityManager.merge(booking);
+    }
+
 }
 
 

@@ -28,4 +28,6 @@ public interface RentalService {
 
     void update(BookingForm bookingForm);
 
+    void editBooking(int license ,BookingForm bookingForm);
+
 }

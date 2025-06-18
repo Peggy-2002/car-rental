@@ -134,5 +134,21 @@ public class RentalServiceImpl  implements RentalService{
         rentalRepository.update(bookingForm);
     }
 
+    @Override
+    @Transactional
+    public void editBooking(int license, BookingForm bookingForm) {
+    BookingForm existingBooking = rentalRepository.findByDriversLicense(license);
+    if(existingBooking !=null){
+        existingBooking.setName(bookingForm.getName());
+        existingBooking.setSurname(bookingForm.getSurname());
+        existingBooking.setEmail(bookingForm.getEmail());
+        existingBooking.setPickUpDate(bookingForm.getPickUpDate());
+        existingBooking.setDropOfDate(bookingForm.getDropOfDate());
+        existingBooking.setCarName(bookingForm.getCarName());
+        rentalRepository.editBooking(existingBooking);
+    }
+
+    }
+
 
 }

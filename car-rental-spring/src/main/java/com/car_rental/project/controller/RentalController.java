@@ -149,5 +149,10 @@ final private  RentalService rentalService;
 
     }
 
+    @PutMapping("/editBooking/{license}")
+    public  void  editBooking(@PathVariable int  license, @RequestBody BookingForm bookingForm){
+        rentalService.editBooking(license,bookingForm);
+    }
+
 
 }
