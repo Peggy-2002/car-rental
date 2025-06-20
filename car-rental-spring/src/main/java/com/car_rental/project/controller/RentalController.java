@@ -154,5 +154,11 @@ final private  RentalService rentalService;
         rentalService.editBooking(license,bookingForm);
     }
 
+    @PutMapping("/cars/return/{license}")
+    public  String returnCar(@PathVariable int license){
+        rentalService.returnCar(license);
+        return  "car returned successful";
+    }
+
 
 }

@@ -3,6 +3,7 @@ package com.car_rental.project.repository;
 import com.car_rental.project.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
@@ -158,6 +159,27 @@ public class RentalRepositoryImpl implements  RentalRepository {
         BookingForm booking = findByDriversLicense(bookingForm.getLicense());
         entityManager.merge(booking);
     }
+
+    @Override
+    public Cars findById(int id) {
+        return entityManager.find(Cars.class,id);
+    }
+
+    @Override
+    public void save(Cars cars) {
+        entityManager.merge(cars);
+
+    }
+
+    @Override
+    public void updateCarStatus(int license) {
+        Query query = entityManager.createQuery("UPDATE  BookingForm  b SET  b.returnDate = :CURRENT_DATE WHERE.license =:license ");
+        query.setParameter("license",license);
+
+
+    }
+
+
 
 }
 

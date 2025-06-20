@@ -27,4 +27,10 @@ public interface RentalRepository {
     void update(BookingForm bookingForm);
 
     void editBooking(BookingForm bookingForm);
+
+    Cars findById(int id);
+
+    void  save(Cars cars);
+
+    void updateCarStatus(int licence);
 }

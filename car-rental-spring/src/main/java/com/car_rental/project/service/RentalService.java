@@ -30,4 +30,8 @@ public interface RentalService {
 
     void editBooking(int license ,BookingForm bookingForm);
 
+    void returnCar(int license);
+
+
+
 }

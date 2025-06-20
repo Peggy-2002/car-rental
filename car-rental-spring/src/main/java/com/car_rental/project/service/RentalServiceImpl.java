@@ -150,5 +150,17 @@ public class RentalServiceImpl  implements RentalService{
 
     }
 
+    @Override
+    @Transactional
+    public void returnCar(int license) {
+    rentalRepository.updateCarStatus(license);
+
+
+    }
+
+
+
+
+
 
 }
