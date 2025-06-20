@@ -100,5 +100,21 @@ public class SignUp {
                 ", role='" + role + '\'' +
                 '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "SignUp{" +
+//                "id=" + id +
+//<<<<<<< HEAD
+//                ", bookingForm=" + bookingForm +
+//=======
+//>>>>>>> 6cdf14d2a04d6fd7e6f4232369c6bf4267834ae9
+//                ", name='" + name + '\'' +
+//                ", surname='" + surname + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", role='" + role + '\'' +
+//                '}';
+//    }
 }
 
