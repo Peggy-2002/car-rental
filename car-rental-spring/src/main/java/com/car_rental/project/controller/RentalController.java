@@ -48,7 +48,7 @@ final private  RentalService rentalService;
 
     }
 
-    @PostMapping("addCar")
+    @PostMapping("/addCar")
     public Response addCar(@RequestBody Cars car ){
         System.out.println(car);
 
@@ -59,10 +59,30 @@ final private  RentalService rentalService;
         return responses;
 
     }
+    @PostMapping("/addComplaint")
+    public Response addCar(@RequestBody Complaints complaints ){
+        System.out.println(complaints);
+
+        this.rentalService.addComplaint(complaints);
+        Response responses = new Response();
+        responses.setMessage("Thank you for your message");
+
+        return responses;
+
+    }
 
     @GetMapping("/getCars")
     public List<Cars> getCars(){
          List<Cars>  cars =this.rentalService.getCars();
+        System.out.println(cars);
+        return cars;
+
+
+    }
+
+    @GetMapping("/viewComplaints")
+    public List<Complaints> getComplaints(){
+        List<Complaints>  cars =this.rentalService.getComplaints();
         System.out.println(cars);
         return cars;
 
@@ -106,6 +126,8 @@ final private  RentalService rentalService;
         System.out.println(bookingForm);
 
 
+
+
         this.rentalService.saveBookingForm(bookingForm);
         Response response = new Response();
         response.setMessage("submitted");
@@ -147,6 +169,11 @@ final private  RentalService rentalService;
         response.setMessage("Cancelled");
         return  response;
 
+    }
+
+    @PutMapping("/editBooking/{license}")
+    public  void  editBooking(@PathVariable int  license, @RequestBody BookingForm bookingForm){
+        rentalService.editBooking(license,bookingForm);
     }
 
 

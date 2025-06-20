@@ -17,6 +17,8 @@ public class BookingForm {
     @JoinColumn(name="account_id")
     private SignUp signUp ;
 
+
+
     @Column(name = "name")
     private  String name ;
     @Column(name = "surname")
@@ -67,6 +69,7 @@ public class BookingForm {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -94,6 +97,8 @@ public class BookingForm {
     public void setLicense(int license) {
         this.license = license;
     }
+
+
 
     public String getCarName() {
         return carName;
@@ -160,6 +165,7 @@ public class BookingForm {
         return "BookingForm{" +
                 "id=" + id +
                 ", signUp=" + signUp +
+
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

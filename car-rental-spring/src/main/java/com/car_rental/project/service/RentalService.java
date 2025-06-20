@@ -9,10 +9,12 @@ public interface RentalService {
 
     SignUp verifyEmailAndPassword(Login login);
 
+    void addComplaint(Complaints complaints);
+
     void addCar(Cars car);
 
     List<Cars> getCars();
-
+    List<Complaints> getComplaints();
     Cars getCar(String name);
     void removeCar(String name);
 
@@ -27,5 +29,7 @@ public interface RentalService {
     BookingForm getBooking(int license);
 
     void update(BookingForm bookingForm);
+
+    void editBooking(int license ,BookingForm bookingForm);
 
 }

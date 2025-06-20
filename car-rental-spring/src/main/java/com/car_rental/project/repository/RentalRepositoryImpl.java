@@ -66,11 +66,40 @@ public class RentalRepositoryImpl implements  RentalRepository {
 
     }
 
+    @Override
+    public void addComplaint(Complaints complaints) {
+        entityManager.persist(complaints);
+
+    }
+
     public List<Cars> getCars(){
 
             TypedQuery<Cars> typedQuery = entityManager.createQuery("FROM Cars",Cars.class);
 
             return typedQuery.getResultList();
+
+    }
+
+    @Override
+    public void updateCars(Cars car) {
+        Cars  cars = entityManager.find(Cars.class,car.getId());
+        cars.setName(car.getName());
+        cars.setPicture(car.getPicture());
+        cars.setSeater(car.getSeater());
+        cars.setStatus("Booked");
+
+        entityManager.merge(cars);
+
+
+
+    }
+
+    @Override
+    public List<Complaints> getComplaints() {
+        TypedQuery<Complaints> typedQuery = entityManager.createQuery("FROM Complaints",Complaints.class);
+
+        return typedQuery.getResultList();
+
 
     }
 
@@ -152,6 +181,13 @@ public class RentalRepositoryImpl implements  RentalRepository {
         entityManager.merge(bookingForm1);
 
     }
+
+    @Override
+    public void editBooking(BookingForm bookingForm) {
+        BookingForm booking = findByDriversLicense(bookingForm.getLicense());
+        entityManager.merge(booking);
+    }
+
 }
 
 
