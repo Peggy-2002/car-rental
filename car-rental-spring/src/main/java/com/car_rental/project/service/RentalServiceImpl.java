@@ -222,12 +222,28 @@ public class RentalServiceImpl  implements RentalService{
     @Override
     @Transactional
     public void update(BookingForm bookingForm) {
+
+        SimpleMailMessage message= new SimpleMailMessage();
+        message.setFrom ("dudurose05@gmail.com");
+        message.setTo(bookingForm.getEmail());
+        message.setSubject("Car booking confirmation");
+        message.setText( "dear  " + bookingForm.getName() + ",\n\n" +
+                "your booking with booking code  \n" + bookingForm.getLicense() + " \n\nhas been successfully cancelled  ,\n\n" +
+                "Should   you have any questions, feel free to contact us.\n\n" +
+                "We looking forward to serving  you.\n\n" +
+                "Best regards,\n" +
+                "Rose");
+
+
+        mailSender.send(message);
+
         rentalRepository.update(bookingForm);
     }
 
     @Override
     @Transactional
     public void editBooking(int license, BookingForm bookingForm) {
+
     BookingForm existingBooking = rentalRepository.findByDriversLicense(license);
     if(existingBooking !=null){
         existingBooking.setName(bookingForm.getName());
@@ -236,6 +252,25 @@ public class RentalServiceImpl  implements RentalService{
         existingBooking.setPickUpDate(bookingForm.getPickUpDate());
         existingBooking.setDropOfDate(bookingForm.getDropOfDate());
         existingBooking.setCarName(bookingForm.getCarName());
+
+        SimpleMailMessage message= new SimpleMailMessage();
+        message.setFrom ("dudurose05@gmail.com");
+        message.setTo(bookingForm.getEmail());
+        message.setSubject("Car booking confirmation");
+        message.setText( "dear  " + bookingForm.getName() + ",\n\n" +
+                "we're writting to inform you that your booking with reference number  \n" + bookingForm.getLicense() + " \n\nhas been updated  ,\n\n" +
+                "Booking code:" + bookingForm.getLicense()+ "\n\n" +
+                "Car:" + bookingForm.getCarName()+ "\n\n" +
+                "Pick-up Date: " + bookingForm.getPickUpDate() + "\n\n" +
+                "Location:Klerksdorp " + "\n\n" +
+                "Should   you have any questions, feel free to contact us.\n\n" +
+                "We looking forward to serving  you.\n\n" +
+                "Best regards,\n" +
+                "Rose");
+
+
+        mailSender.send(message);
+
         rentalRepository.editBooking(existingBooking);
     }
 
