@@ -10,6 +10,7 @@ public interface RentalService {
     SignUp verifyEmailAndPassword(Login login);
 
     void addComplaint(Complaints complaints);
+    void returnCar(BookingForm bookingForm);
 
     void addCar(Cars car);
 

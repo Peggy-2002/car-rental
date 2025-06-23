@@ -149,6 +149,18 @@ final private  RentalService rentalService;
         return response;
 
     }
+    @PatchMapping("/returnCar")
+    public Response returnCar(@RequestBody BookingForm bookingForm ){
+        System.out.println(bookingForm);
+
+
+        this.rentalService.returnCar(bookingForm);
+        Response response = new Response();
+        response.setMessage("Returned");
+
+        return response;
+
+    }
 
     @GetMapping("/viewbookings")
     public List<BookingForm> getAllBookings(){
