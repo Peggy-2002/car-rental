@@ -37,8 +37,8 @@ public class BookingForm {
     @Column(name="cancel_status")
     private String status;
 
-    @Column(name="return_status")
-    private String returnStatus;
+//    @Column(name="return_status")
+//    private String returnStatus;
 
     @Column(name="cancellation_fee")
     private String fee;
@@ -46,9 +46,18 @@ public class BookingForm {
 
     @Column(name="drop_of_date")
     private String dropOfDate;
+    @Column(name="condition_status")
+    private String condition;
 
-    @Column(name="payment")
-    private String payment;
+    @Column(name="returned_on_time")
+    private String time;
+
+    @Column(name="return_status")
+    private String returned;
+    @Column(name="damaged_fee")
+    private double damagedFee;
+    @Column(name="delayed_fee")
+    private double delayedFee;
     public int getId() {
         return id;
     }
@@ -128,12 +137,20 @@ public class BookingForm {
         this.dropOfDate = dropOfDate;
     }
 
-    public String getPayment() {
-        return payment;
+    public double getDamagedFee() {
+        return damagedFee;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment;
+    public void setDamagedFee(double damagedFee) {
+        this.damagedFee = damagedFee;
+    }
+
+    public double getDelayedFee() {
+        return delayedFee;
+    }
+
+    public void setDelayedFee(double delayedFee) {
+        this.delayedFee = delayedFee;
     }
 
     public String getStatus() {
@@ -144,13 +161,13 @@ public class BookingForm {
         this.status = status;
     }
 
-    public String getReturnStatus() {
-        return returnStatus;
-    }
-
-    public void setReturnStatus(String returnStatus) {
-        this.returnStatus = returnStatus;
-    }
+//    public String getReturnStatus() {
+//        return returnStatus;
+//    }
+//
+//    public void setReturnStatus(String returnStatus) {
+//        this.returnStatus = returnStatus;
+//    }
 
     public String getFee() {
         return fee;
@@ -160,12 +177,35 @@ public class BookingForm {
         this.fee = fee;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getReturned() {
+        return returned;
+    }
+
+    public void setReturned(String returned) {
+        this.returned = returned;
+    }
+
     @Override
     public String toString() {
         return "BookingForm{" +
                 "id=" + id +
                 ", signUp=" + signUp +
-
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
@@ -173,10 +213,13 @@ public class BookingForm {
                 ", carName='" + carName + '\'' +
                 ", pickUpDate='" + pickUpDate + '\'' +
                 ", status='" + status + '\'' +
-                ", returnStatus='" + returnStatus + '\'' +
                 ", fee='" + fee + '\'' +
                 ", dropOfDate='" + dropOfDate + '\'' +
-                ", payment='" + payment + '\'' +
+                ", condition='" + condition + '\'' +
+                ", time='" + time + '\'' +
+                ", returned='" + returned + '\'' +
+                ", damagedFee=" + damagedFee +
+                ", delayedFee=" + delayedFee +
                 '}';
     }
 }

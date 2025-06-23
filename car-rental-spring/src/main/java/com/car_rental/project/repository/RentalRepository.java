@@ -13,6 +13,8 @@ public interface RentalRepository {
     void addComplaint(Complaints complaints);
     List<Cars> getCars();
 
+    void returnCar(BookingForm bookingForm);
+
     void updateCars(Cars car);
 
     List<Complaints> getComplaints();

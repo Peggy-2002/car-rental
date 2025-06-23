@@ -47,6 +47,12 @@ public class RentalServiceImpl  implements RentalService{
 
     @Override
     @Transactional
+    public void returnCar(BookingForm bookingForm) {
+        this.rentalRepository.returnCar(bookingForm);
+    }
+
+    @Override
+    @Transactional
     public void addCar(Cars car) {
     this.rentalRepository.addCar(car);
 

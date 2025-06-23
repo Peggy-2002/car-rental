@@ -81,6 +81,16 @@ public class RentalRepositoryImpl implements  RentalRepository {
     }
 
     @Override
+    public void returnCar(BookingForm bookingForm) {
+       BookingForm bookingForm1 = findByDriversLicense(bookingForm.getLicense());
+       bookingForm1.setReturned(bookingForm.getReturned());
+       bookingForm1.setTime(bookingForm.getTime());
+       bookingForm1.setCondition(bookingForm.getCondition());
+       entityManager.merge(bookingForm1);
+
+    }
+
+    @Override
     public void updateCars(Cars car) {
         Cars  cars = entityManager.find(Cars.class,car.getId());
         cars.setName(car.getName());
@@ -123,12 +133,12 @@ public class RentalRepositoryImpl implements  RentalRepository {
 
 
     public  void saveBookingForm(BookingForm bookingForm ){
-        bookingForm.setPayment("Paid");
+
         this.entityManager.persist(bookingForm);
     }
 
     public  void saveForm(BookingForm bookingForm ){
-        bookingForm.setPayment("Paid");
+
         entityManager.merge(bookingForm);
     }
 
