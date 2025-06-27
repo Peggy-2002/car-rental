@@ -49,7 +49,20 @@ public class RentalServiceImpl  implements RentalService{
     @Transactional
     public void returnCar(BookingForm bookingForm) {
         this.rentalRepository.returnCar(bookingForm);
+
+        for (int i = 0; i < this.car.size(); i++) {
+            if (bookingForm.getCarName().equals(this.car.get(i).getName())) {
+                updateReturnedCar(this.car.get(i));
+            }
+
+        }
+
     }
+    @Transactional
+    public  void updateReturnedCar(Cars car){
+       this.rentalRepository.updateReturnedCar(car);
+    }
+
 
     @Override
     @Transactional
@@ -82,6 +95,8 @@ public class RentalServiceImpl  implements RentalService{
         this.rentalRepository.removeCar(name);
     }
 
+
+
     @Transactional
     public void saveBookingForm(BookingForm bookingForm ) {
     for(int i =0 ;i < this.car.size(); i++){
@@ -111,24 +126,6 @@ public class RentalServiceImpl  implements RentalService{
         }
        updateCars(this.car.get(i));
     }
-//        SimpleMailMessage message= new SimpleMailMessage();
-//        message.setFrom ("peggydudu5@gmail.com");
-//        message.setTo(bookingForm.getEmail());
-//        message.setSubject("Car booking confirmation");
-//        message.setText( "Hi  " + bookingForm.getName() + ",\n\n" +
-//                          "Booking Code: " + bookingForm.getLicense() + "\n\n" +
-//                          "This is to confirm your booking for the vehicle:  " + bookingForm.getCarName() + "\n" +
-//
-//                           "Pick-up Date: " + bookingForm.getPickUpDate() + "\n" +
-//                            "Location:Klerksdorp " + "\n\n" +
-//                             "If you  need to make any changes, please use your booking code to update your reservation  on our  website.\n" +
-//                               "Should you  you have any questions, feel free to contact us.\n\n" +
-//                                 "We looking forward to serving  you.\n\n" +
-//                                    "Best regards,\n" +
-//                                      "Peggy");
-//
-//
-//        mailSender.send(message);
 
 
     this.rentalRepository.saveBookingForm(bookingForm);
@@ -163,10 +160,10 @@ public class RentalServiceImpl  implements RentalService{
 
 
                 mailSender.send(message);
-
+                updateCars(this.car.get(i));
 
             }
-            updateCars(this.car.get(i));
+//            updateCars(this.car.get(i));
         }
 
 
@@ -174,34 +171,12 @@ public class RentalServiceImpl  implements RentalService{
 
 
 
-//        SimpleMailMessage message= new SimpleMailMessage();
-//        message.setFrom ("peggydudu5@gmail.com");
-//        message.setTo(bookingForm.getEmail());
-//        message.setSubject("Car booking confirmation");
-//        message.setText( "Hi  " + bookingForm.getName() + ",\n\n" +
-//                "Booking Code: " + bookingForm.getLicense() + "\n\n" +
-//                "This is to confirm your booking for the vehicle:  " + bookingForm.getCarName() + "\n" +
-//                "Pick-up Date: " + bookingForm.getPickUpDate() + "\n" +
-//                "Location:Klerksdorp " + "\n\n" +
-//                "If you  need to make any changes, please use your booking code to update your reservation  on our  website.\n" +
-//                "Should you  you have any questions, feel free to contact us.\n\n" +
-//                "We looking forward to serving  you.\n\n" +
-//                "Best regards,\n" +
-//                "Peggy");
-//
-//
-//        mailSender.send(message);
 
 
         this.rentalRepository.saveForm(bookingForm);
 
     }
-//    @Override
-//    @Transactional
-//    public void updateCars(Cars ) {
-//        this.rentalRepository.updateCar(car);
-//
-//    }
+
 
         @Transactional
         public void updateCars(Cars car) {
@@ -222,6 +197,7 @@ public class RentalServiceImpl  implements RentalService{
 
     @Override
     public BookingForm getBooking(int license) {
+
         return rentalRepository.findByDriversLicense(license) ;
     }
 
@@ -282,13 +258,6 @@ public class RentalServiceImpl  implements RentalService{
 
     }
 
-    @Override
-    @Transactional
-    public void returnCar(int license) {
-    rentalRepository.updateCarStatus(license);
-
-
-    }
 
 
 

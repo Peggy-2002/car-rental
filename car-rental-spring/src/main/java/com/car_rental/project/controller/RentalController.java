@@ -42,8 +42,11 @@ final private  RentalService rentalService;
         Response responses = new Response();
         responses.setMessage(role.getRole());
         responses.setId(role.getId());
+        responses.setName(role.getName());
         System.out.println(role.getId());
         System.out.println(role.getRole());
+        System.out.println(role.getName());
+
         return responses;
 
     }
@@ -125,9 +128,6 @@ final private  RentalService rentalService;
     public Response saveBookingForm(@RequestBody BookingForm bookingForm ){
         System.out.println(bookingForm);
 
-
-
-
         this.rentalService.saveBookingForm(bookingForm);
         Response response = new Response();
         response.setMessage("submitted");
@@ -153,7 +153,6 @@ final private  RentalService rentalService;
     public Response returnCar(@RequestBody BookingForm bookingForm ){
         System.out.println(bookingForm);
 
-
         this.rentalService.returnCar(bookingForm);
         Response response = new Response();
         response.setMessage("Returned");
@@ -171,28 +170,35 @@ final private  RentalService rentalService;
 
     @GetMapping("bookings/{license}")
     public  BookingForm getBooking(final  @PathVariable int license){
-        return rentalService.getBooking(license);
+//        System.out.println(license);
+        BookingForm bookingForm = rentalService.getBooking(license);
+        System.out.println(bookingForm);
+        return  bookingForm;
+
     }
     @PostMapping("/update-bookings")
     public  Response  deleteBookings(@RequestBody BookingForm bookingForm){
         rentalService.update(bookingForm);
         System.out.println(bookingForm);
         Response response = new Response();
-        response.setMessage("Cancelled");
+        response.setMessage("Successfully cancelled booking");
         return  response;
 
     }
 
     @PutMapping("/editBooking/{license}")
-    public  void  editBooking(@PathVariable int  license, @RequestBody BookingForm bookingForm){
+    public  Response  editBooking(@PathVariable int  license, @RequestBody BookingForm bookingForm){
         rentalService.editBooking(license,bookingForm);
+        Response response = new Response();
+        response.setMessage("Successfully updated details");
+        return  response;
     }
 
-    @PutMapping("/cars/return/{license}")
-    public  String returnCar(@PathVariable int license){
-        rentalService.returnCar(license);
-        return  "car returned successful";
+//    @PutMapping("/cars/return/{license}")
+//    public  String returnCar(@PathVariable int license){
+//        rentalService.returnCar(license);
+//        return  "car returned successful";
     }
 
 
-}
+

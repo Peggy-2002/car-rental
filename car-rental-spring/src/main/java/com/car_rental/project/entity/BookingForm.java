@@ -41,7 +41,7 @@ public class BookingForm {
 //    private String returnStatus;
 
     @Column(name="cancellation_fee")
-    private String fee;
+    private int cancelationFee;
 
 
     @Column(name="drop_of_date")
@@ -55,9 +55,9 @@ public class BookingForm {
     @Column(name="return_status")
     private String returned;
     @Column(name="damaged_fee")
-    private double damagedFee;
+    private int damagedFee;
     @Column(name="delayed_fee")
-    private double delayedFee;
+    private int delayedFee;
     public int getId() {
         return id;
     }
@@ -137,19 +137,19 @@ public class BookingForm {
         this.dropOfDate = dropOfDate;
     }
 
-    public double getDamagedFee() {
+    public int getDamagedFee() {
         return damagedFee;
     }
 
-    public void setDamagedFee(double damagedFee) {
+    public void setDamagedFee(int damagedFee) {
         this.damagedFee = damagedFee;
     }
 
-    public double getDelayedFee() {
+    public int getDelayedFee() {
         return delayedFee;
     }
 
-    public void setDelayedFee(double delayedFee) {
+    public void setDelayedFee(int delayedFee) {
         this.delayedFee = delayedFee;
     }
 
@@ -169,12 +169,13 @@ public class BookingForm {
 //        this.returnStatus = returnStatus;
 //    }
 
-    public String getFee() {
-        return fee;
+
+    public int getCancelationFee() {
+        return cancelationFee;
     }
 
-    public void setFee(String fee) {
-        this.fee = fee;
+    public void setCancelationFee(int cancelationFee) {
+        this.cancelationFee = cancelationFee;
     }
 
     public String getCondition() {
@@ -213,7 +214,7 @@ public class BookingForm {
                 ", carName='" + carName + '\'' +
                 ", pickUpDate='" + pickUpDate + '\'' +
                 ", status='" + status + '\'' +
-                ", fee='" + fee + '\'' +
+                ", cancelationFee=" + cancelationFee +
                 ", dropOfDate='" + dropOfDate + '\'' +
                 ", condition='" + condition + '\'' +
                 ", time='" + time + '\'' +

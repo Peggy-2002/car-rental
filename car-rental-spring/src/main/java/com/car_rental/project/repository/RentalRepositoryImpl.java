@@ -1,10 +1,7 @@
 package com.car_rental.project.repository;
 
 import com.car_rental.project.entity.*;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
@@ -87,6 +84,9 @@ public class RentalRepositoryImpl implements  RentalRepository {
        bookingForm1.setReturned(bookingForm.getReturned());
        bookingForm1.setTime(bookingForm.getTime());
        bookingForm1.setCondition(bookingForm.getCondition());
+       bookingForm1.setDelayedFee(bookingForm.getDelayedFee());
+       bookingForm1.setDamagedFee(bookingForm.getDamagedFee());
+       bookingForm1.setReturned("Returned");
        entityManager.merge(bookingForm1);
 
     }
@@ -103,6 +103,13 @@ public class RentalRepositoryImpl implements  RentalRepository {
 
 
 
+    }
+
+    @Override
+    public void updateReturnedCar(Cars car) {
+        Cars ca = entityManager.find(Cars.class,car.getId());
+        ca.setStatus("Available");
+        entityManager.merge(ca);
     }
 
     @Override
@@ -179,19 +186,29 @@ public class RentalRepositoryImpl implements  RentalRepository {
     public BookingForm findByDriversLicense(int license) {
         TypedQuery<BookingForm> query =entityManager.createQuery("FROM BookingForm WHERE license =:license", BookingForm.class);
         query.setParameter("license",license);
+
         BookingForm booking = query.getSingleResult();
+        System.out.println(license);
+        System.out.println(booking );
         return booking ;
     }
 
     @Override
     public void update(BookingForm bookingForm) {
-        BookingForm bookingForm1 =findByDriversLicense(bookingForm.getLicense());
 
-        bookingForm1.setStatus("Cancelled");
-        bookingForm1.setFee("Paid");
-        entityManager.merge(bookingForm1);
+            BookingForm bookingForm1 =findByDriversLicense(bookingForm.getLicense());
 
-    }
+                    bookingForm1.setStatus("Cancelled");
+            entityManager.merge(bookingForm1);
+
+
+        }
+
+
+
+
+
+
 
     @Override
     public void editBooking(BookingForm bookingForm) {
@@ -210,13 +227,13 @@ public class RentalRepositoryImpl implements  RentalRepository {
 
     }
 
-    @Override
-    public void updateCarStatus(int license) {
-        Query query = entityManager.createQuery("UPDATE  BookingForm  b SET  b.returnDate = :CURRENT_DATE WHERE.license =:license ");
-        query.setParameter("license",license);
-
-
-    }
+//    @Override
+//    public void updateCarStatus(int license) {
+//        Query query = entityManager.createQuery("UPDATE  BookingForm  b SET  b.returnDate = :CURRENT_DATE WHERE.license =:license ");
+//        query.setParameter("license",license);
+//
+//
+//    }
 
 
 

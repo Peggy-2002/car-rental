@@ -18,6 +18,7 @@ public interface RentalService {
     List<Complaints> getComplaints();
     Cars getCar(String name);
     void removeCar(String name);
+    void updateReturnedCar(Cars car);
 
     void saveBookingForm(BookingForm bookingForm);
 
@@ -33,7 +34,7 @@ public interface RentalService {
 
     void editBooking(int license ,BookingForm bookingForm);
 
-    void returnCar(int license);
+
 
 
 

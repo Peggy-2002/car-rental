@@ -16,6 +16,7 @@ public interface RentalRepository {
     void returnCar(BookingForm bookingForm);
 
     void updateCars(Cars car);
+    void updateReturnedCar(Cars car);
 
     List<Complaints> getComplaints();
     Cars getCar(String name);
@@ -39,5 +40,5 @@ public interface RentalRepository {
 
     void  save(Cars cars);
 
-    void updateCarStatus(int licence);
+
 }
